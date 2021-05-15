@@ -8,7 +8,7 @@ context('Todo List', () => {
     it('interact with list', () => {
         cy.get('input')
             .type('Lorem ipsum').should('have.value', 'Lorem ipsum')
-        
+
         cy.get('button').click().then(() => {
             cy.get('input').should('have.value', '')
             cy.get('ul').find('li').should('have.length', 1)
@@ -17,6 +17,27 @@ context('Todo List', () => {
                 cy.get('ul').find('li').should('have.length', 0)
             })
         })
+    });
+
+    it('add rows', () => {
+        cy.get('input')
+            .type('Lorem ipsum')
+
+        cy.get('button').first().click({multiple: true})
+
+        cy.get('input')
+            .type('Lorem ipsum')
+
+        cy.get('button').first().click({multiple: true})
+
+        cy.get('input')
+            .type('Lorem ipsum')
+
+        cy.get('button').first().click({multiple: true})
+
+        cy.get('button').last().click({multiple: true})
+
+        cy.get('button').last().click({multiple: true})
     });
 })
   
